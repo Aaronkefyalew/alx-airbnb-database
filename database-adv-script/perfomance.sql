@@ -1,6 +1,10 @@
+-- performance.sql
 
+-- ============================================
 -- 1. Initial Query: Retrieve all bookings
 -- with user, property, and payment details
+-- No WHERE or AND clauses used
+-- ============================================
 SELECT
     b.booking_id,
     b.booking_date,
@@ -50,8 +54,8 @@ LEFT JOIN
     Payment pay ON b.booking_id = pay.booking_id;
 
 -- ============================================
--- 3. Optimized Query
--- Only select necessary columns and use proper joins
+-- 3. Optimized Query (without WHERE/AND)
+-- Select only necessary columns
 -- ============================================
 SELECT
     b.booking_id,
