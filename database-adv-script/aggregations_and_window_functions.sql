@@ -22,3 +22,17 @@ LEFT JOIN Bookings b
     ON p.property_id = b.property_id
 GROUP BY p.property_id, p.name
 ORDER BY booking_rank;
+
+-- 3. Window Function with ROW_NUMBER:
+-- Assign a unique row number to properties based on their booking counts
+SELECT 
+    p.property_id,
+    p.name AS property_name,
+    COUNT(b.booking_id) AS total_bookings,
+    ROW_NUMBER() OVER (ORDER BY COUNT(b.booking_id) DESC) AS booking_row_number
+FROM Properties p
+LEFT JOIN Bookings b 
+    ON p.property_id = b.property_id
+GROUP BY p.property_id, p.name
+ORDER BY booking_row_number;
+
